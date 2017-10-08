@@ -1,4 +1,4 @@
-# javascript-template
+# javascript-template[![Build Status](https://travis-ci.org/ordonezf/7510-TP1-Javascript.svg?branch=master)](https://travis-ci.org/ordonezf/7510-TP1-Javascript)
 
 A Javascript library designed to be used as a template for each exercise/tp used in Tecnicas de Diseño.
 
