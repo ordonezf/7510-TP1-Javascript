@@ -2,6 +2,7 @@ var parser = require('parser');
 
 
 var Fact = function (parsedFact) {
+	
 	this.name = parsedFact[0];
 	this.args = parsedFact[1];
 
@@ -12,7 +13,14 @@ var Fact = function (parsedFact) {
 
 var Rule = function () {}
 
-var Query = function() {}
+var Query = function(parsedQuery) {
+
+	this.name = parsedQuery[0];
+	this.args = parsedQuery[1];
+
+	this.getName = function() {return this.name;}
+	this.getArgs = function() {return this.args;}
+}
 
 var DataBase = function() {
 
