@@ -1,7 +1,14 @@
 var parser = require('parser');
 
 
-var Fact = function () {}
+var Fact = function (parsedFact) {
+	this.name = parsedFact[0];
+	this.args = parsedFact[1];
+
+	this.isEqual = function(query) {
+		return (this.name === query.getName() && this.args.join(',') === query.getArgs().join(','));
+	}
+}
 
 var Rule = function () {}
 
@@ -32,7 +39,7 @@ var DataBase = function() {
 
 	this.checkForFact = function(query) {
 
-		let res = this.facts.map(fact => Fact.isEqual(fact, query));
+		let res = this.facts.map(fact => fact.isEqual(query));
 		return res.includes(true);
 	}
 
