@@ -5,7 +5,7 @@ var InvalidDataBaseException = require('../src/exceptions');
 var Fact = function (parsedFact) {
 
     this.name = parsedFact[1];
-    this.args = parsedFact[2].split(',');
+    this.args = parsedFact[2].split(', ');
 
     this.isEqual = function(query) {
         return (this.name === query.getName() && this.args.join(',') === query.getArgs().join(','));
@@ -15,17 +15,33 @@ var Fact = function (parsedFact) {
 var Rule = function (parsedRule) {
 
     this.name = parsedRule[0][1];
-    this.args = parsedRule[0][2].split(',');
+    this.args = parsedRule[0][2].split(', ');
     this.conditions = parsedRule.slice(1).map(fact => new Fact(fact));
+
+    this.isEqual = function(query) {
+        return (this.name === query.getName() && this.args.lenght === query.getArgs().lenght)
+    }
+    //this.lenght = function() { return this.args.lenght;}
 }
 
 var Query = function(parsedQuery) {
 
     this.name = parsedQuery[1];
-    this.args = parsedQuery[2].split(',');
+    this.args = parsedQuery[2].split(', ');
 
     this.getName = function() {return this.name;}
     this.getArgs = function() {return this.args;}
+}
+
+
+var arrayMerger = function() {
+
+    this.dic = {};
+    this.merge = function(arr1, arr2) {
+        for (var i = 0; i < Object.keys(arr1).length; i++) {
+            this.dic[arr1[i]] = arr2[i];
+        }
+    }
 }
 
 var DataBase = function() {
@@ -59,6 +75,15 @@ var DataBase = function() {
 
     this.checkForRule = function(query) {
     /*Do Stuff*/
+        let arm = new arrayMerger();
+        for (let rule of this.rules) {
+            if (rule.isEqual(query)) {
+                arm.merge(rule.args, query.args);
+                let res = rule.conditions.map(fact => new Query(['foo', fact.name, fact.args.map(arg => arm.dic[arg]).join(', ')]));
+                let res1 = res.map(query => this.checkForFact(query));
+                return res1.every(e => e === true);
+            }
+        }
         return false;
     }
 
