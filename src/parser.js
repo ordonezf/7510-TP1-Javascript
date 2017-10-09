@@ -1,6 +1,6 @@
 var regex = {
 	validFact: /^([a-z]+)\(((?:[a-z]+, )*[a-z]+)\)\.$/,
-	validQuery: /^([a-z]+)\(((?:[a-z]+, )*[a-z]+)\)\.$/,
+	validQuery: /^([a-z]+)\(((?:[a-z]+, )*[a-z]+)\)$/,
 	validRule: /^([a-z]+)\(((?:[A-Z]+, )*[A-Z]+)\) :- (([a-z]+)\(((?:[A-Z]+, )*[A-Z]+)\)[, \.]+)+$/,
 	parseRule: /([a-z]+)\(((?:[A-Z]+, )*[A-Z]+)\)/g,
 	parseRuleElements: /([a-z]+)\(((?:[A-Z]+, )*[A-Z]+)\)/
@@ -38,10 +38,6 @@ var RuleParser = function() {
 		return arr.map(elem => elem.match(regex.parseRuleElements))
 	}
 }
-
-
-
-
 
 
 module.exports = {
