@@ -1,14 +1,14 @@
-var Entities = require('entities');
+var Entities = require('../src/entities');
 var DataBase = Entities.DataBase;
 
 
 var Interpreter = function () {
-    this.database;
+
+    this.database = new DataBase();
+    this.databaseIsValid = true;
 
     this.parseDB = function(db) {
-        this.database = new DataBase();
-        this.database.createDataBase(db);
-        if (this.database === null) {return null};
+        let res = this.database.createDataBase(db);
     }
 
     this.checkQuery = function (query) {

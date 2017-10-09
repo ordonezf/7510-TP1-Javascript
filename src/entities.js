@@ -1,4 +1,5 @@
-var parser = require('parser');
+var parser = require('../src/parser');
+var InvalidDataBaseException = require('../src/exceptions');
 
 
 var Fact = function (parsedFact) {
@@ -11,7 +12,12 @@ var Fact = function (parsedFact) {
     }
 }
 
-var Rule = function () {}
+var Rule = function (parsedRule) {
+
+    this.name = parsedRule[0][1];
+    this.args = parsedRule[0][2].split(',');
+    this.conditions = parsedRule.slice(1).map(fact => new Fact(fact));
+}
 
 var Query = function(parsedQuery) {
 
@@ -41,7 +47,7 @@ var DataBase = function() {
                 let ruleComponents = this.ruleParser.parse(row);
                 this.rules.push(new Rule(ruleComponents));
 
-            } else {return null;}
+            } else {throw new InvalidDataBaseException(row);}
         }
     }
 
@@ -51,10 +57,12 @@ var DataBase = function() {
         return res.includes(true);
     }
 
-    this.checkForRule = function(query) {/*Do Stuff*/}
+    this.checkForRule = function(query) {
+    /*Do Stuff*/
+        return false;
+    }
 
     this.checkQuery = function(query) {
-
         if (this.queryParser.isQuery(query)) {
             let queryComponents = this.queryParser.parse(query);
             let queryObject = new Query(queryComponents);
