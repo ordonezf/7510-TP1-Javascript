@@ -37,16 +37,10 @@ describe("Entities", function () {
         "varon(ALEJANDRO).",
     ];
 
-    var fact = null;
-    var query = null;
-    var rule = null;
     var db = null;
 
     beforeEach(function () {
         // runs before each test in this block
-        fact = new Fact();
-        query = new Query();
-        rule = new Rule();
         db = new DataBase();
     });
 
