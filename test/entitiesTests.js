@@ -74,7 +74,7 @@ describe("Entities", function () {
             try {
                 db.createDataBase(error_db)
             } catch (err) {
-                assert(err.message === "Error in DataBase creation in parameter: varon(ALEJANDRO).";);
+                assert(err.message === "Error in DataBase creation in parameter: varon(ALEJANDRO).");
             }
         });
 
