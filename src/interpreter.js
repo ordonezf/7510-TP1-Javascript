@@ -8,7 +8,7 @@ var Interpreter = function () {
     this.databaseIsValid = true;
 
     this.parseDB = function(db) {
-        let res = this.database.createDataBase(db);
+        this.database.createDataBase(db);
     }
 
     this.checkQuery = function (query) {
