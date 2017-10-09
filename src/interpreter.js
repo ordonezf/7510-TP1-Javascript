@@ -5,7 +5,6 @@ var DataBase = Entities.DataBase;
 var Interpreter = function () {
 
     this.database = new DataBase();
-    this.databaseIsValid = true;
 
     this.parseDB = function(db) {
         this.database.createDataBase(db);
