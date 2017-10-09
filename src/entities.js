@@ -21,7 +21,6 @@ var Rule = function (parsedRule) {
     this.isEqual = function(query) {
         return (this.name === query.getName() && this.args.lenght === query.getArgs().lenght)
     }
-    //this.lenght = function() { return this.args.lenght;}
 }
 
 var Query = function(parsedQuery) {
