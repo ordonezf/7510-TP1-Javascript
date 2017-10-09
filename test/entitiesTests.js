@@ -62,7 +62,7 @@ describe("Entities", function () {
             });
         });
 
-        it('error_db should be an invalid DataBase', function () {
+        it('createDataBase with error_db should leave validDataBase -> false', function () {
             try {
                 db.createDataBase(error_db)
             } catch (err) {
