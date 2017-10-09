@@ -3,8 +3,8 @@ var parser = require('parser');
 
 var Fact = function (parsedFact) {
 
-    this.name = parsedFact[0];
-    this.args = parsedFact[1];
+    this.name = parsedFact[1];
+    this.args = parsedFact[2].split(',');
 
     this.isEqual = function(query) {
         return (this.name === query.getName() && this.args.join(',') === query.getArgs().join(','));
@@ -15,8 +15,8 @@ var Rule = function () {}
 
 var Query = function(parsedQuery) {
 
-    this.name = parsedQuery[0];
-    this.args = parsedQuery[1];
+    this.name = parsedQuery[1];
+    this.args = parsedQuery[2].split(',');
 
     this.getName = function() {return this.name;}
     this.getArgs = function() {return this.args;}
