@@ -48,6 +48,7 @@ var DataBase = function() {
 
     this.facts = [];
     this.rules = [];
+    this.validDataBase = true;
 
     this.factParser = new parser.FactParser();
     this.ruleParser = new parser.RuleParser();
@@ -63,8 +64,12 @@ var DataBase = function() {
                 let ruleComponents = this.ruleParser.parse(row);
                 this.rules.push(new Rule(ruleComponents));
 
-            } else {throw new InvalidDataBaseException(row);}
+            } else {
+                this.validDataBase = false;
+                throw new InvalidDataBaseException(row);
+            }
         }
+
     }
 
     this.checkForFact = function(query) {
