@@ -105,5 +105,8 @@ var DataBase = function() {
 
 
 module.exports = {
-    DataBase
+    DataBase,
+    Fact,
+    Query,
+    Rule
 }
